@@ -2,67 +2,61 @@ console.log("test");
 
 /*
 
+setInterval : 특정 함수를 일정시간마다 반복 호출
+setInterval(함수, 인터벌 시간);
+인터벌간격마다 함수 반복 호출
+
 new Date() : 시간관련 인스턴스 객체를 생성해주는 생성자
 시간관련  인스턴스 객체 : 다양한 시간관련 메서드를 호출 가능
 */
 
-const month = ['January', 'February', 'Maarch', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-
-const now = new Date();
-console.log(now);
-
-//년도값 반환
-console.log(now.getFullYear());
-
-//월값 반환
-console.log(now.getMonth());
-
-console.log(month[now.getMonth()]);
-
-console.log(days[now.getDay()]);
-
-//시간
-console.log(now.getHours());
-
-//분
-console.log(now.getMinutes());
-
-//초
-console.log(now.getSeconds());
-
-//우리나라 시간대를 전세계 표준시를 변환하는 메서드
-const gmtNow = now.toGMTString();
-
-console.log(gmtNow);
 
 //미션1 - new Date()를 활용해서 시간,분,초를 각각 span안에 출력
 
-const h1 = document.querySelector('h1');
-const em = h1.querySelector('em');
-const span = document.querySelector('span');
 
-const setTime = () => {
+const title = document.querySelector('h1');
+const [em, spanHr, spanMin, spanSec] = title.children;
+
+setInterval(() => {
   const now = new Date();
-  em.textContent = now.getHours() < 13 ? 'pm' : 'am';
-  span.textContent = `${now.getHours()} 시간  :  ${now.getMinutes()} 분: ${now.getSeconds()} 초 `;
-}
+  const hr = now.getHours();
+  const min = now.getMinutes();
+  const sec = now.getSeconds();
 
-setInterval(setTime, 1000);
+  let apm = hr < 13 ? "am" : "pm";
 
-//미션2 - 현재 시간이 13시를 넘기면 em안쪽의 'am'을  'pm'으로 출력
+  em.innerText = apm;
+  spanHr.innerText = hr;
+  spanMin.innerText = min;
+  spanSec.innerText = sec;
 
-//매 초마다 아이콘 및 색상을 변경
-// const body = document.body;
-// const setColor = () => {
-//   const now = new Date();
-//   const seconds = now.getSeconds();
-//   body.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-// }
+  // //배경색 1초마다 변경
+  // const r = Math.floor(Math.random() * 256);
+  // const g = Math.floor(Math.random() * 256);
+  // const b = Math.floor(Math.random() * 256);
 
-// setInterval(setColor, 1000);
+  // document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  // 1초마다 psy의 강남스타일 가사 표시
+  // const psy = document.querySelector('.psy');
+  // const lyrics = [
+  //   "낮에는 따사로운 인간적인 여자",
+  //   "커피 한잔의 여유를 아는 품격있는 여자",
+  //   "밤이 오면 심장이 뜨거워지는 여자",
+  //   "그런 반전 있는 여자",
+  //   "낮에는 따사로운 인간적인 여자",
+  //   "커피 한잔의 여유를 아는 품격있는 여자",
+  //   "밤이 오면 심장이 뜨거워지는 여자",
+  //   "그런 반전 있는 여자",
+  // ];
+  // let idx = Math.floor(Math.random() * lyrics.length);
+  // psy.innerText = lyrics[idx];
+
+
+}, 1000);
+
+
+
+
 
 
 
